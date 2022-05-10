@@ -41,15 +41,24 @@ function findSubmissionByName (array, name) {
 
 
 function findLowestScore (array) {
-        return Math.min(array.forEach(submission => submission.score));
+    let lowestScoreObject = array[0];
+
+
+    array.forEach((submission) => {
+        if (submission.score < lowestScoreObject.score) {
+            lowestScoreObject = submission;
+        }
+    });
+
+    return lowestScoreObject
 };
 
-// console.log(findLowestScore(submissions));
-// needs work - only returns undefined
+console.log(findLowestScore(submissions));
+
 
 function findAverageScore (array) {
     let sum = 0;
-    for (submission of array) {
+    for (let submission of array) {
     sum += submission.score;
     };
     return sum / array.length;
@@ -62,7 +71,7 @@ function filterPassing (array) {
         );
     return result
 };
-//console.log(filterPassing(submissions));
+// console.log(filterPassing(submissions));
 
 function filter90AndAbove (array) {
     const result = array.filter
